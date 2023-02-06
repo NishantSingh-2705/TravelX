@@ -1,0 +1,49 @@
+<head>
+    <style>
+        div button {
+            display: inline-block;
+        }
+    </style>
+</head>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto py-9">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Login</h3>
+                </div>
+                <div class="card-body">
+                    <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" class="form-control" formControlName="email">
+                            <span class="text-danger" *ngIf="(loginFormControl.email.touched || submitted) && loginFormControl.email.errors?.['required']">
+                                Email is required
+                            </span>
+                            <span class="text-danger" *ngIf="loginFormControl.email.touched && loginFormControl.email.errors?.email">
+                                Enter a valid email address
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" formControlName="password">
+                            <span class="text-danger" *ngIf="(loginFormControl.password.touched || submitted) && loginFormControl.password.errors?.['required']">
+                                Password is required
+                            </span>
+                            <span class="text-danger" *ngIf="loginFormControl.password.touched && loginFormControl.password.errors?.invalidPassword">
+                                Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase
+                                letter and 1 number
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-secondary">Login</button>
+                            <button type="submit" class="btn btn-secondary" (click)="registerUser()">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
